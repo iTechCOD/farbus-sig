@@ -1,0 +1,21 @@
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporales de ofimática
+~$*.docx
+~$*.xlsx
+~$*.pptx
+*.tmp
+
+# Python (Entrega 2)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# Editores
+.vscode/
+.idea/
