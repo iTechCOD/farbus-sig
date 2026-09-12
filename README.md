@@ -73,7 +73,7 @@ La Entrega 2 implementa el TO-BE de las Figuras 3 y 4 sobre el modelo de datos d
 Figura 5, desplegado localmente y reproducible con un solo comando:
 
 ```bash
-git clone <repositorio>
+git clone https://github.com/iTechCOD/farbus-sig.git
 cd farbus-sig
 cp .env.example .env
 docker compose up --build

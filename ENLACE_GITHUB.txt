@@ -1,7 +1,7 @@
 Repositorio del proyecto ICN292 — Entrega 1
 Sociedad de Transportes Farbus Ltda.
 
-URL: [COMPLETAR con la URL del repositorio]
+URL: https://github.com/iTechCOD/farbus-sig
 
 Estudiante: Martin Farfan Cornejo
 RUT: 21.076.161-6
