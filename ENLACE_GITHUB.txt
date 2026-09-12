@@ -1,0 +1,13 @@
+Repositorio del proyecto ICN292 — Entrega 1
+Sociedad de Transportes Farbus Ltda.
+
+URL: [COMPLETAR con la URL del repositorio]
+
+Estudiante: Martin Farfan Cornejo
+RUT: 21.076.161-6
+Rol USM: 202260632-0
+Paralelo: 101
+Correo: martin.farfan@usm.cl
+
+Repositorio publico. El informe en PDF y Word esta en la carpeta informe/,
+y son los mismos archivos subidos a Aula.
