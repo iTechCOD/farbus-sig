@@ -46,7 +46,7 @@ datos que ya existen.
 | `docs/03-er-preliminar.md` | Modelo entidad-relación, claves primarias candidatas y cardinalidades |
 | `assets/` | Los seis diagramas exportados en PNG y SVG, más el fuente `.dot` del ER |
 | `informe/` | El informe completo en PDF y en Word — los mismos archivos subidos a Aula |
-| `anexos/` | Evidencia levantada en terreno (acta firmada y capturas anonimizadas) |
+| `anexos/` | Evidencia levantada en terreno: acta firmada y capturas anonimizadas (A1 a A6) |
 | `scripts/` | Utilitarios del repositorio |
 
 ---
