@@ -1,13 +1,17 @@
-Repositorio del proyecto ICN292 — Entrega 1
-Sociedad de Transportes Farbus Ltda.
+ICN292 — Sistemas de Información para la Gestión — Entrega 2 (E2)
+Universidad Técnica Federico Santa María · Paralelo 101
+Caso: Sociedad de Transportes Farbus Ltda.
+Estudiante: Martín Farfán Cornejo · Rol USM 202260632-0
+Modalidad individual autorizada por el profesor
 
-URL: https://github.com/iTechCOD/farbus-sig
+REPOSITORIO: https://github.com/iTechCOD/farbus-sig
+COMMIT_VERSION_E2: e191413e316f0caa20c563fe8c67e8f1ee9a5bde
+VERSION_AUDITABLE: https://github.com/iTechCOD/farbus-sig/tree/e191413e316f0caa20c563fe8c67e8f1ee9a5bde
 
-Estudiante: Martin Farfan Cornejo
-RUT: 21.076.161-6
-Rol USM: 202260632-0
-Paralelo: 101
-Correo: martin.farfan@usm.cl
+Informe: informe/ICN292_P101_E2_Farfan_Cornejo.pdf
+Informe editable: informe/ICN292_P101_E2_Farfan_Cornejo.docx
+Presentación: presentacion/ICN292_P101_E2_Farfan_Cornejo.pptx
+Código, datos sintéticos y pruebas reproducibles: db/, consultas/, scripts/, tests/, resultados/
+Documentación y declaración de uso de IA: README.md, docs/, DECLARACION_IA.md, CHANGELOG.md
 
-Repositorio publico. El informe en PDF y Word esta en la carpeta informe/,
-y son los mismos archivos subidos a Aula.
+La versión anterior de Entrega 1 se conserva en el historial Git y sus anexos originales.
