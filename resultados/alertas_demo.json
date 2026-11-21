@@ -1,0 +1,43 @@
+{
+  "fecha_control": "2026-11-21",
+  "horizonte_dias": 30,
+  "cantidad_alertas": 5,
+  "alertas": [
+    {
+      "tipo": "DOCUMENTO",
+      "patente": "SIM003",
+      "documento": "REVISION_TECNICA",
+      "vencimiento": "2026-11-30",
+      "dias_restantes": 9,
+      "prioridad": "POR_VENCER"
+    },
+    {
+      "tipo": "DOCUMENTO",
+      "patente": "SIM001",
+      "documento": "REVISION_TECNICA",
+      "vencimiento": "2026-12-09",
+      "dias_restantes": 18,
+      "prioridad": "POR_VENCER"
+    },
+    {
+      "tipo": "DOCUMENTO",
+      "patente": "SIM004",
+      "documento": "REVISION_TECNICA",
+      "vencimiento": "2026-12-10",
+      "dias_restantes": 19,
+      "prioridad": "POR_VENCER"
+    },
+    {
+      "tipo": "MANTENCION",
+      "patente": "SIM002",
+      "km_restantes": 380,
+      "prioridad": "PROXIMA"
+    },
+    {
+      "tipo": "MANTENCION",
+      "patente": "SIM003",
+      "km_restantes": -450,
+      "prioridad": "VENCIDA"
+    }
+  ]
+}

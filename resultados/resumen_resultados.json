@@ -1,0 +1,171 @@
+[
+  {
+    "consulta": "01_consolidado_cobro.sql",
+    "filas": 2,
+    "columnas": [
+      "contrato",
+      "cliente",
+      "vueltas_ejecutadas",
+      "pasajeros_trasladados",
+      "monto_preliquidado_clp"
+    ],
+    "resultados": [
+      [
+        "SIM-DOLE-2026",
+        "Dole",
+        7,
+        196,
+        327000
+      ],
+      [
+        "SIM-PF-2026",
+        "Patagoniafresh",
+        4,
+        36,
+        200500
+      ]
+    ]
+  },
+  {
+    "consulta": "02_rendimiento_combustible.sql",
+    "filas": 3,
+    "columnas": [
+      "patente",
+      "km_entre_llenados",
+      "litros_repuestos",
+      "rendimiento_km_l"
+    ],
+    "resultados": [
+      [
+        "SIM001",
+        480,
+        162.0,
+        2.96
+      ],
+      [
+        "SIM002",
+        600,
+        88.0,
+        6.82
+      ],
+      [
+        "SIM003",
+        800,
+        136.0,
+        5.88
+      ]
+    ]
+  },
+  {
+    "consulta": "03_alertas_documentos.sql",
+    "filas": 3,
+    "columnas": [
+      "patente",
+      "tipo",
+      "fecha_vencimiento",
+      "dias_restantes"
+    ],
+    "resultados": [
+      [
+        "SIM003",
+        "REVISION_TECNICA",
+        "2026-11-30",
+        9
+      ],
+      [
+        "SIM001",
+        "REVISION_TECNICA",
+        "2026-12-09",
+        18
+      ],
+      [
+        "SIM004",
+        "REVISION_TECNICA",
+        "2026-12-10",
+        19
+      ]
+    ]
+  },
+  {
+    "consulta": "04_trazabilidad_vale.sql",
+    "filas": 1,
+    "columnas": [
+      "numero_vale",
+      "fecha_servicio",
+      "cliente",
+      "cod_recorrido",
+      "sentido",
+      "patente",
+      "conductor_anonimizado",
+      "hora_salida",
+      "hora_llegada",
+      "pasajeros",
+      "estado",
+      "tarifa_aplicable_clp"
+    ],
+    "resultados": [
+      [
+        "SIM-VA-005",
+        "2026-11-18",
+        "Dole",
+        "R01-N",
+        "SALIDA",
+        "SIM001",
+        "COND-01",
+        "21:30",
+        "22:15",
+        37,
+        "EJECUTADA",
+        51000
+      ]
+    ]
+  },
+  {
+    "consulta": "05_cumplimiento_programacion.sql",
+    "filas": 5,
+    "columnas": [
+      "fecha_servicio",
+      "servicios_programados",
+      "ejecutados",
+      "cancelados",
+      "pendientes"
+    ],
+    "resultados": [
+      [
+        "2026-11-17",
+        3,
+        3,
+        0,
+        0
+      ],
+      [
+        "2026-11-18",
+        3,
+        3,
+        0,
+        0
+      ],
+      [
+        "2026-11-19",
+        2,
+        2,
+        0,
+        0
+      ],
+      [
+        "2026-11-20",
+        4,
+        3,
+        1,
+        0
+      ],
+      [
+        "2026-11-21",
+        1,
+        0,
+        0,
+        1
+      ]
+    ]
+  }
+]

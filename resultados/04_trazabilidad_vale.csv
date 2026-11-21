@@ -1,0 +1,2 @@
+﻿numero_vale,fecha_servicio,cliente,cod_recorrido,sentido,patente,conductor_anonimizado,hora_salida,hora_llegada,pasajeros,estado,tarifa_aplicable_clp
+SIM-VA-005,2026-11-18,Dole,R01-N,SALIDA,SIM001,COND-01,21:30,22:15,37,EJECUTADA,51000

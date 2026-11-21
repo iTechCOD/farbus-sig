@@ -1,0 +1,19 @@
+test_alertas_automaticas (test_integridad.ModeloTest.test_alertas_automaticas) ... ok
+test_bloquea_detalle_contrato_ajeno (test_integridad.ModeloTest.test_bloquea_detalle_contrato_ajeno) ... ok
+test_bloquea_detalle_monto_alterado (test_integridad.ModeloTest.test_bloquea_detalle_monto_alterado) ... ok
+test_bloquea_edicion_programacion_invalida (test_integridad.ModeloTest.test_bloquea_edicion_programacion_invalida) ... ok
+test_bloquea_licencia_incompatible (test_integridad.ModeloTest.test_bloquea_licencia_incompatible) ... ok
+test_bloquea_pasajeros_sobre_capacidad (test_integridad.ModeloTest.test_bloquea_pasajeros_sobre_capacidad) ... ok
+test_bloquea_revision_vencida (test_integridad.ModeloTest.test_bloquea_revision_vencida) ... ok
+test_bloquea_tarifa_solapada (test_integridad.ModeloTest.test_bloquea_tarifa_solapada) ... ok
+test_bloquea_vehiculo_en_mantencion (test_integridad.ModeloTest.test_bloquea_vehiculo_en_mantencion) ... ok
+test_cancelacion_actualiza_estado_programacion (test_integridad.ModeloTest.test_cancelacion_actualiza_estado_programacion) ... ok
+test_consolidado_montos (test_integridad.ModeloTest.test_consolidado_montos) ... ok
+test_fk_obligatoria (test_integridad.ModeloTest.test_fk_obligatoria) ... ok
+test_integridad_y_contenido (test_integridad.ModeloTest.test_integridad_y_contenido) ... ok
+test_vuelta_no_puede_duplicarse (test_integridad.ModeloTest.test_vuelta_no_puede_duplicarse) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.117s
+
+OK

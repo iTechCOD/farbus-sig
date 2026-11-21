@@ -1,0 +1,16 @@
+digraph G {rankdir=LR;graph [bgcolor="#ffffff",pad="0.3",nodesep="0.65",ranksep="0.8",fontname="DejaVu Sans",labeljust="l"];
+node [shape=box,style="rounded,filled",fontname="DejaVu Sans",fontsize=13,color="#b5c6d8",fillcolor="#e8f1fa",fontcolor="#15283e",penwidth=1.4,margin="0.24,0.14"];
+edge [color="#3f668b",penwidth=1.8,arrowsize=0.75,fontname="DejaVu Sans",fontsize=10];
+labelloc=t;label="FARBUS | BPMN TO-BE - programación, vuelta y cobro";fontsize=21;
+inicio [label="Inicio\nRequerimiento",shape=circle,fillcolor="#eef3f9"];
+programar [label="1. Programar\nrecorrido y turno"];
+validar [label="2. SIG valida\nvehículo / licencia / RT",fillcolor="#daf2eb",color="#3c917c"];
+gateway [shape=diamond,label="¿Habilitado?",fillcolor="#fff2d4",color="#d1a04a",fontsize=11];
+corregir [label="Corregir asignación",fillcolor="#fbe5df",color="#bf786a"];
+comunicar [label="3. Enviar hoja\npor WhatsApp"];
+ejecutar [label="4. Conductor\nejecuta y anota"];
+registrar [label="5. Logística registra\nejecución en SIG",fillcolor="#daf2eb",color="#3c917c"];
+consolidar [label="6. SIG consolida\nservicios y tarifa",fillcolor="#daf2eb",color="#3c917c"];
+fin [label="Cobro disponible\npara contabilidad",shape=doublecircle,fontsize=10,fillcolor="#e4f3e6"];
+inicio->programar->validar->gateway;gateway->comunicar[label="Sí"];gateway->corregir[label="No"];corregir->validar;comunicar->ejecutar->registrar->consolidar->fin;
+}

@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='utf-8'?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Defs_BPMN_TOBE_alertas" targetNamespace="https://farbus.cl/academico/sig" exporter="Farbus E2">
+  <bpmn:process id="Process_BPMN_TOBE_alertas" name="BPMN TOBE alertas" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_BPMN_TOBE_alertas">
+      <bpmn:lane id="Lane_SIG" name="SIG">
+        <bpmn:flowNodeRef>Node_inicio</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Node_leer</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Node_comparar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Node_alarma</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Node_emitir</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Node_sin</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Logistica" name="Logistica">
+        <bpmn:flowNodeRef>Node_revisar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Node_fin</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="Node_inicio" name="Control diario" />
+    <bpmn:serviceTask id="Node_leer" name="Leer documentos y&#10;última mantención" />
+    <bpmn:serviceTask id="Node_comparar" name="Comparar fechas y&#10;odómetro con umbrales" />
+    <bpmn:exclusiveGateway id="Node_alarma" name="¿Hay alertas?" />
+    <bpmn:serviceTask id="Node_emitir" name="Generar archivo JSON&#10;de alertas" />
+    <bpmn:userTask id="Node_revisar" name="Revisar alertas&#10;en logística" />
+    <bpmn:endEvent id="Node_sin" name="Sin novedades" />
+    <bpmn:endEvent id="Node_fin" name="Acción coordinada" />
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="Node_inicio" targetRef="Node_leer" />
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="Node_leer" targetRef="Node_comparar" />
+    <bpmn:sequenceFlow id="Flow_3" sourceRef="Node_comparar" targetRef="Node_alarma" />
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="Node_alarma" targetRef="Node_emitir" />
+    <bpmn:sequenceFlow id="Flow_5" sourceRef="Node_alarma" targetRef="Node_sin" />
+    <bpmn:sequenceFlow id="Flow_6" sourceRef="Node_emitir" targetRef="Node_revisar" />
+    <bpmn:sequenceFlow id="Flow_7" sourceRef="Node_revisar" targetRef="Node_fin" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_BPMN_TOBE_alertas">
+    <bpmndi:BPMNPlane id="Plane_BPMN_TOBE_alertas" bpmnElement="Process_BPMN_TOBE_alertas">
+      <bpmndi:BPMNShape id="Shape_inicio" bpmnElement="Node_inicio">
+        <dc:Bounds x="25" y="120" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_leer" bpmnElement="Node_leer">
+        <dc:Bounds x="105" y="105" width="144" height="72" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_comparar" bpmnElement="Node_comparar">
+        <dc:Bounds x="295" y="105" width="144" height="72" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_alarma" bpmnElement="Node_alarma">
+        <dc:Bounds x="480" y="115" width="52" height="52" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_emitir" bpmnElement="Node_emitir">
+        <dc:Bounds x="580" y="105" width="144" height="72" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_revisar" bpmnElement="Node_revisar">
+        <dc:Bounds x="770" y="105" width="144" height="72" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_sin" bpmnElement="Node_sin">
+        <dc:Bounds x="580" y="255" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_fin" bpmnElement="Node_fin">
+        <dc:Bounds x="960" y="125" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Edge_1" bpmnElement="Flow_1">
+        <di:waypoint x="61" y="138.0" />
+        <di:waypoint x="105" y="141.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_2" bpmnElement="Flow_2">
+        <di:waypoint x="249" y="141.0" />
+        <di:waypoint x="295" y="141.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_3" bpmnElement="Flow_3">
+        <di:waypoint x="439" y="141.0" />
+        <di:waypoint x="480" y="141.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_4" bpmnElement="Flow_4">
+        <di:waypoint x="532" y="141.0" />
+        <di:waypoint x="580" y="141.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_5" bpmnElement="Flow_5">
+        <di:waypoint x="532" y="141.0" />
+        <di:waypoint x="580" y="273.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_6" bpmnElement="Flow_6">
+        <di:waypoint x="724" y="141.0" />
+        <di:waypoint x="770" y="141.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_7" bpmnElement="Flow_7">
+        <di:waypoint x="914" y="141.0" />
+        <di:waypoint x="960" y="143.0" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

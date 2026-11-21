@@ -1,0 +1,7 @@
+services:
+  auditoria:
+    build: .
+    volumes:
+      - ./resultados:/proyecto/resultados
+    environment:
+      PYTHONDONTWRITEBYTECODE: "1"

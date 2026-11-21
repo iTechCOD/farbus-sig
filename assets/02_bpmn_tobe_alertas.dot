@@ -1,0 +1,14 @@
+digraph G {rankdir=LR;graph [bgcolor="#ffffff",pad="0.3",nodesep="0.65",ranksep="0.8",fontname="DejaVu Sans",labeljust="l"];
+node [shape=box,style="rounded,filled",fontname="DejaVu Sans",fontsize=13,color="#b5c6d8",fillcolor="#e8f1fa",fontcolor="#15283e",penwidth=1.4,margin="0.24,0.14"];
+edge [color="#3f668b",penwidth=1.8,arrowsize=0.75,fontname="DejaVu Sans",fontsize=10];
+labelloc=t;label="FARBUS | BPMN TO-BE - automatización de alertas";fontsize=21;
+inicio [label="Inicio diario",shape=circle];
+leer [label="Script lee\nbase SQL",fillcolor="#daf2eb",color="#3c917c"];
+validar [label="Evaluar RT / SOAP /\npermiso y próximo km",fillcolor="#daf2eb",color="#3c917c"];
+gw [label="¿Umbral\nsuperado?",shape=diamond,fillcolor="#fff2d4",color="#d1a04a"];
+json [label="Emitir reporte\nJSON de alertas",fillcolor="#daf2eb",color="#3c917c"];
+revisar [label="Logística revisa\ny coordina gestión"];
+fin [label="Fin",shape=doublecircle,fillcolor="#e4f3e6"];
+sin [label="Fin sin alertas",shape=doublecircle,fillcolor="#e4f3e6"];
+inicio->leer->validar->gw;gw->json[label="Sí"];gw->sin[label="No"];json->revisar->fin;
+}

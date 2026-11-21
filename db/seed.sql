@@ -1,0 +1,96 @@
+-- DATOS DE DEMOSTRACION SINTETICOS. No son registros reales de Farbus.
+-- Los nombres de los clientes provienen del diagnóstico E1; movimientos,
+-- patentes, tarifas, montos y fechas son supuestos para demostrar las consultas.
+PRAGMA foreign_keys = ON;
+BEGIN TRANSACTION;
+INSERT INTO cliente VALUES(1,'Dole'),(2,'Patagoniafresh');
+INSERT INTO planta VALUES(1,1,'Planta Dole','San Fernando'),(2,2,'Planta Patagoniafresh','Molina');
+INSERT INTO contrato VALUES
+ (1,1,'SIM-DOLE-2026','2026-01-01','2026-12-31','VIGENTE'),
+ (2,2,'SIM-PF-2026','2026-01-01','2026-12-31','VIGENTE');
+INSERT INTO recorrido VALUES
+ ('R01-D',1,'San Fernando - planta','DIURNO',24.0),
+ ('R01-N',1,'San Fernando - planta','NOCTURNO',24.0),
+ ('R02-D',2,'Molina - planta','DIURNO',31.0),
+ ('R02-N',2,'Molina - planta','NOCTURNO',31.0);
+INSERT INTO tarifa VALUES
+ (1,1,'R01-D',42000,'2026-01-01','2026-10-31'),
+ (2,1,'R01-D',45000,'2026-11-01','2026-12-31'),
+ (3,1,'R01-N',51000,'2026-01-01','2026-12-31'),
+ (4,2,'R02-D',48500,'2026-01-01','2026-12-31'),
+ (5,2,'R02-N',55000,'2026-01-01','2026-12-31');
+INSERT INTO conductor VALUES
+ (1,'COND-01','A3','2027-08-15',1),
+ (2,'COND-02','A2','2027-05-30',1),
+ (3,'COND-03','A3','2027-09-01',1),
+ (4,'COND-04','A2','2026-12-10',1);
+-- Patentes ficticias, deliberadamente no coincidentes con las de la empresa.
+INSERT INTO vehiculo VALUES
+ ('SIM001','BUS','Mercedes-Benz','O500',2018,40,'A3',190200,'OPERATIVO'),
+ ('SIM002','MINIBUS','Hyundai','H350',2022,12,'A2',83120,'OPERATIVO'),
+ ('SIM003','MINIBUS','Ford','Transit',2023,10,'A2',91450,'OPERATIVO'),
+ ('SIM004','BUS','Mercedes-Benz','LO916',2019,30,'A3',140100,'MANTENCION');
+INSERT INTO documento_vehiculo VALUES
+ (1,'SIM001','REVISION_TECNICA','2026-01-15','2026-12-09'),
+ (2,'SIM001','PERMISO_CIRCULACION','2026-03-01','2027-03-31'),
+ (3,'SIM001','SOAP','2026-03-01','2027-03-31'),
+ (4,'SIM002','REVISION_TECNICA','2026-01-10','2027-02-04'),
+ (5,'SIM002','PERMISO_CIRCULACION','2026-03-01','2027-03-31'),
+ (6,'SIM002','SOAP','2026-03-01','2027-03-31'),
+ (7,'SIM003','REVISION_TECNICA','2026-01-01','2026-11-30'),
+ (8,'SIM003','PERMISO_CIRCULACION','2026-03-01','2027-03-31'),
+ (9,'SIM003','SOAP','2026-03-01','2027-03-31'),
+ (10,'SIM004','REVISION_TECNICA','2026-02-01','2026-12-10'),
+ (11,'SIM004','PERMISO_CIRCULACION','2026-03-01','2027-03-31'),
+ (12,'SIM004','SOAP','2026-03-01','2027-03-31');
+INSERT INTO estanque VALUES(1,'TQ-1',5000),(2,'TQ-2',5000),(3,'TQ-3',3000);
+-- Cada carga del ejemplo es carga completa; el cálculo km/L exige comparar llenados.
+INSERT INTO carga_combustible VALUES
+ (1,'SIM001',1,'2026-11-13 18:00',189720,100,1,'ENC-01'),
+ (2,'SIM001',1,'2026-11-17 18:00',189960,80,1,'ENC-01'),
+ (3,'SIM001',1,'2026-11-20 18:00',190200,82,1,'ENC-01'),
+ (4,'SIM002',2,'2026-11-13 18:00',82520,58,1,'ENC-01'),
+ (5,'SIM002',2,'2026-11-17 18:00',82820,42,1,'ENC-01'),
+ (6,'SIM002',2,'2026-11-20 18:00',83120,46,1,'ENC-01'),
+ (7,'SIM003',3,'2026-11-14 18:00',90650,68,1,'ENC-01'),
+ (8,'SIM003',3,'2026-11-17 18:00',91050,58,1,'ENC-01'),
+ (9,'SIM003',3,'2026-11-20 18:00',91450,78,1,'ENC-01');
+INSERT INTO mantencion VALUES
+ (1,'SIM001','2026-11-02',188000,'Preventiva',191000,'Cambio filtros'),
+ (2,'SIM002','2026-10-24',80500,'Preventiva',83500,'Cambio aceite'),
+ (3,'SIM003','2026-10-01',86000,'Preventiva',91000,'Control próximo vencido'),
+ (4,'SIM004','2026-11-19',140000,'Correctiva',143000,'Unidad en mantención');
+INSERT INTO programacion VALUES
+ (1,'2026-11-17',1,'R01-D','SIM001',1,'ENTRADA','PROGRAMADA'),
+ (2,'2026-11-17',1,'R01-D','SIM002',2,'SALIDA','PROGRAMADA'),
+ (3,'2026-11-17',2,'R02-D','SIM003',4,'ENTRADA','PROGRAMADA'),
+ (4,'2026-11-18',1,'R01-D','SIM001',1,'ENTRADA','PROGRAMADA'),
+ (5,'2026-11-18',1,'R01-N','SIM001',1,'SALIDA','PROGRAMADA'),
+ (6,'2026-11-18',2,'R02-D','SIM003',4,'SALIDA','PROGRAMADA'),
+ (7,'2026-11-19',1,'R01-D','SIM002',2,'ENTRADA','PROGRAMADA'),
+ (8,'2026-11-19',2,'R02-N','SIM003',3,'SALIDA','PROGRAMADA'),
+ (9,'2026-11-20',1,'R01-D','SIM001',1,'ENTRADA','PROGRAMADA'),
+ (10,'2026-11-20',2,'R02-D','SIM003',4,'SALIDA','PROGRAMADA'),
+ (11,'2026-11-20',1,'R01-N','SIM001',1,'SALIDA','PROGRAMADA'),
+ (12,'2026-11-20',2,'R02-D','SIM002',2,'ENTRADA','PROGRAMADA'),
+ (13,'2026-11-21',1,'R01-D','SIM002',2,'ENTRADA','PROGRAMADA');
+INSERT INTO vuelta VALUES
+ (1,1,'07:00','07:35',33,'SIM-VA-001','EJECUTADA'),
+ (2,2,'17:10','17:45',11,'SIM-VA-002','EJECUTADA'),
+ (3,3,'06:40','07:20',9,'SIM-VA-003','EJECUTADA'),
+ (4,4,'07:05','07:42',35,'SIM-VA-004','EJECUTADA'),
+ (5,5,'21:30','22:15',37,'SIM-VA-005','EJECUTADA'),
+ (6,6,'17:15','18:02',10,'SIM-VA-006','EJECUTADA'),
+ (7,7,'07:00','07:37',12,'SIM-VA-007','EJECUTADA'),
+ (8,8,'22:10','22:55',8,'SIM-VA-008','EJECUTADA'),
+ (9,9,'07:10','07:43',34,'SIM-VA-009','EJECUTADA'),
+ (10,10,'17:00','17:48',9,'SIM-VA-010','EJECUTADA'),
+ (11,11,'21:35','22:12',34,'SIM-VA-011','EJECUTADA'),
+ (12,12,NULL,NULL,0,NULL,'CANCELADA');
+INSERT INTO preliquidacion VALUES
+ (1,1,'2026-11-16','2026-11-30','2026-11-21 10:00'),
+ (2,2,'2026-11-16','2026-11-30','2026-11-21 10:00');
+INSERT INTO detalle_preliquidacion VALUES
+ (1,1,45000),(1,2,45000),(1,4,45000),(1,5,51000),(1,7,45000),
+ (1,9,45000),(1,11,51000),(2,3,48500),(2,6,48500),(2,8,55000),(2,10,48500);
+COMMIT;

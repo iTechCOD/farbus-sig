@@ -1,124 +1,86 @@
-# SIG para Sociedad de Transportes Farbus Ltda.
+# Farbus SIG — Entrega 2 | ICN292 · P101 · 2026-2
 
-**ICN292 — Gestión y Rediseño de Procesos · Entrega 1 · Paralelo 101**
-Universidad Técnica Federico Santa María — Campus Santiago Vitacura
+**Caso:** Sociedad de Transportes Farbus Ltda., San Fernando, Región de O'Higgins.  
+**Autor:** Martín Farfán Cornejo, rol USM 202260632-0, paralelo 101.  
+**Repositorio del proyecto:** https://github.com/iTechCOD/farbus-sig  
+**Motor SQL verificado:** SQLite 3 (accesible a través del módulo `sqlite3` de Python 3.10 o superior).  
+**Naturaleza:** prototipo técnico académico, no sistema desplegado en la PYME. **Los registros SQL del seed son sintéticos**, no datos operativos auténticos.
 
-Diagnóstico de los sistemas de información de una PYME real y propuesta de un Sistema de
-Información de Gestión (SIG) que será construido en la Entrega 2.
+## 1. Propósito
 
----
+Farbus lleva la programación de traslados en planillas desconectadas y hojas físicas; el diagnóstico E1 identificó cerca de 4 horas diarias de digitación y una consolidación quincenal de hasta 15 días. E2 convierte el diseño propuesto en un **modelo relacional 3FN ejecutable**, consultas verificables y una automatización de alertas de flota. Conserva las decisiones de negocio clave de E1: separar la programación de la vuelta realizada, preservar el historial de tarifas y registrar conductores solo mediante códigos anónimos.
 
-## 1. Qué PYME es y qué problema tiene
+## 2. Prueba de oro: ejecutar desde cero
 
-**Sociedad de Transportes Farbus Ltda.** (RUT 76.366.560-7) es una empresa de San Fernando,
-Región de O'Higgins, que presta transporte de personal a empresas agroindustriales bajo
-contrato fijo. Opera 40 vehículos inscritos (36 operativos), 25 colaboradores —20 de ellos
-conductores— y un catálogo de 48 recorridos codificados en turno día y noche.
-
-**El problema, en una frase:**
-
-> La operación se registra en papel y se transcribe a mano hacia cuatro planillas Excel
-> desconectadas que se trasladan por pendrive. Esto consume unas 4 horas diarias de los dos
-> administradores de logística (≈80 h al mes), retrasa hasta 15 días el consolidado que
-> sustenta la facturación, e impide usar para gestión datos que la empresa ya captura
-> —pasajeros por vuelta y kilometraje por carga de combustible—, además de no sostener
-> ningún registro formal de mantenciones ni de vencimientos de revisión técnica.
-
-El problema no se le propuso a la empresa para que lo confirmara: sale de lo que respondió
-por su cuenta el representante legal al preguntarle qué arreglaría si pudiera cambiar una
-sola cosa. Ver `docs/00-caso-pyme.md`.
-
-**Objetivo del SIG:** centralizar en una base de datos única el registro de la operación
-diaria —programación, vueltas ejecutadas, combustible, kilometraje y estado de flota—
-eliminando la transcripción entre planillas y habilitando el control de indicadores con
-datos que ya existen.
-
----
-
-## 2. Qué hay en cada carpeta
-
-| Carpeta | Contenido |
-|---|---|
-| `docs/` | Documentación del proyecto en Markdown, dividida por tema |
-| `docs/00-caso-pyme.md` | La PYME, la evidencia que acredita su existencia y el problema de negocio |
-| `docs/01-requerimientos.md` | Actores, alcance in/out, 21 requisitos funcionales y 10 no funcionales con MoSCoW |
-| `docs/02-bpmn.md` | Procesos AS-IS y TO-BE, puntos críticos, mejoras y KPI |
-| `docs/03-er-preliminar.md` | Modelo entidad-relación, claves primarias candidatas y cardinalidades |
-| `assets/` | Los seis diagramas exportados en PNG y SVG, más el fuente `.dot` del ER |
-| `informe/` | El informe completo en PDF y en Word — los mismos archivos subidos a Aula |
-| `anexos/` | Evidencia levantada en terreno: acta firmada y capturas anonimizadas (A1 a A6) |
-| `scripts/` | Utilitarios del repositorio |
-
----
-
-## 3. Diagramas
-
-| Figura | Archivo | Contenido |
-|---|---|---|
-| 1 | `assets/01-bpmn-asis-operacion.png` | BPMN AS-IS — programación y ejecución de vueltas |
-| 2 | `assets/02-bpmn-asis-facturacion.png` | BPMN AS-IS — consolidación quincenal y facturación |
-| 3 | `assets/03-bpmn-tobe-operacion.png` | BPMN TO-BE — operación con el SIG |
-| 4 | `assets/04-bpmn-tobe-cobro-flota.png` | BPMN TO-BE — cobro en línea y control de flota |
-| 5 | `assets/05-er-preliminar.png` | Modelo entidad-relación preliminar |
-| 6 | `assets/06-arquitectura.png` | Arquitectura lógica en cuatro capas y stack |
-
-Los diagramas son anchos. Para leerlos en detalle conviene abrir el `.svg`, que escala sin
-perder calidad, o el Anexo B del informe, donde están rotados a página completa.
-
----
-
-## 4. Cómo se conecta con la Entrega 2 (localhost)
-
-La Entrega 2 implementa el TO-BE de las Figuras 3 y 4 sobre el modelo de datos de la
-Figura 5, desplegado localmente y reproducible con un solo comando:
+Requisitos: **Python 3.10+**, sin paquetes externos ni internet; o Docker con Compose.
 
 ```bash
 git clone https://github.com/iTechCOD/farbus-sig.git
 cd farbus-sig
-cp .env.example .env
-docker compose up --build
-# aplicación disponible en http://localhost:8000
+python3 scripts/run_demo.py
+python3 scripts/alertas.py --fecha 2026-11-21
+python3 -m unittest discover -s tests -v
 ```
 
-**Stack tentativo:** Python 3.12 · FastAPI · SQLAlchemy 2 + Alembic · PostgreSQL 16 ·
-Jinja2 + HTMX + Bootstrap 5 · Pandas para la carga inicial · Docker Compose · Pytest.
+En Windows puede usar `python` en lugar de `python3`.
 
-Solo los 12 requisitos de prioridad **Must** se comprometen para la Entrega 2. El detalle
-de hitos, responsables y riesgos está en la sección G del informe.
+**Alternativa de un comando con Docker:**
 
----
+```bash
+docker compose up --build --abort-on-container-exit
+```
 
-## 5. Integrante y rol
+La imagen reconstruye la base, ejecuta las consultas y verifica las reglas de negocio. Si se ejecuta sin Docker, el primer comando también recrea la BD desde `db/schema.sql` + `db/seed.sql`, de modo que ningún resultado depende de un archivo previo. El archivo `db/farbus_demo.sqlite` es una copia opcional que puede abrirse con herramientas de SQLite; **no es la fuente autoritativa**.
 
-| Integrante | RUT | Rol USM | Paralelo | Rol en el proyecto |
-|---|---|---|---|---|
-| Martín Farfán Cornejo | 21.076.161-6 | 202260632-0 | 101 | Responsable integral: levantamiento, modelamiento BPMN, modelo de datos, arquitectura y documentación |
+## 3. Ubicación del material auditable
 
-**Nota:** la pauta pide equipos de 4 o 5 integrantes. Este proyecto se desarrolla de forma
-individual con autorización previa del profesor, otorgada antes del cierre de la Entrega 1.
-La constancia está en `anexos/` como Anexo A11.
+| Ruta | Contenido |
+|---|---|
+| `db/schema.sql` | DDL de 15 tablas, PK/FK, CHECK, índices y triggers |
+| `db/seed.sql` | Datos de demostración explícitamente sintéticos |
+| `consultas/01_...sql` a `05_...sql` | Cinco consultas de negocio independientes |
+| `resultados/*.csv` | Salidas reproducidas desde la BD mediante `run_demo.py` |
+| `resultados/alertas_demo.json` | Alertas de ejemplo generadas con fecha controlada |
+| `scripts/run_demo.py` | Recrea la BD y ejecuta todas las consultas |
+| `scripts/alertas.py` | Automatización homóloga a n8n, generadora de alertas |
+| `tests/test_integridad.py` | Catorce pruebas automáticas de integridad y negocio |
+| `assets/*.bpmn`, `assets/*.png`, `assets/*.svg` | BPMN finales, ER normalizado y visualizaciones |
+| `docs/00-caso-pyme.md` | Continuidad y evidencia diagnóstica E1 |
+| `docs/01-requerimientos.md` | Trazabilidad y estado real de implementación |
+| `docs/02-bpmn.md` | Transición del AS-IS al TO-BE final |
+| `docs/03-modelo-datos.md` | Dependencias funcionales, 3FN y diccionario de datos |
+| `docs/04-sql-consultas.md` | Consultas y resultados interpretados |
+| `docs/05-automatizacion-n8n.md` | Equivalencia BPMN ↔ script, pasos y límites |
+| `docs/DECLARACION_IA.md` | Declaración obligatoria del apoyo de IA |
+| `CHANGELOG.md` | Cambios de E1 a E2 |
+| `informe/` | Informe Word/PDF con el mismo contenido |
+| `presentacion/` | PPTX y PDF de 8 diapositivas para la defensa |
 
----
+## 4. Orden de ejecución y verificaciones
 
-## 6. Informe y entrega en Aula
+1. `scripts/run_demo.py` crea la BD desde cero, ejecuta `PRAGMA integrity_check` y `PRAGMA foreign_key_check` y luego las cinco consultas `.sql`.
+2. `scripts/alertas.py --fecha 2026-11-21` lee la BD y genera alertas sobre vencimiento de documentos (30 días) y mantención por kilometraje (500 km).
+3. `python3 -m unittest discover -s tests -v` comprueba catorce casos, incluidos bloqueos por vehículo en mantención, licencia insuficiente, revisión técnica vencida, tarifa solapada, FK inexistente y duplicación de vuelta.
 
-El informe está en `informe/`, en PDF y en Word, y son exactamente los mismos archivos
-subidos a Aula:
+Resultados esperados al ejecutar el seed: **11 vueltas ejecutadas**, **2 contratos**, **$527.500 CLP** como consolidado de demostración (no ingreso real) y **5 alertas**. Estas cifras corresponden *exclusivamente al seed*.
 
-- `informe/ICN292_P101_E1_Farfan_Cornejo.pdf`
-- `informe/ICN292_P101_E1_Farfan_Cornejo.docx`
+## 5. Reglas de negocio que se demuestran
 
-En Aula se sube además `ENLACE_GITHUB.txt` con la URL de este repositorio.
+- Un vehículo en mantención no puede programarse.
+- No se programa un conductor con licencia caducada o clase inferior a la del vehículo (modelo simplificado A2/A3).
+- Un vehículo debe tener revisión técnica vigente al día del servicio.
+- Una programación exige ruta, contrato y tarifa compatible con la fecha.
+- No puede haber tarifas superpuestas del mismo contrato/recorrido.
+- Una vuelta se asocia a una única programación; no se cobra dos veces en el detalle de preliquidación.
+- Los montos históricos se obtienen de la tarifa vigente en la fecha de la vuelta, no de una tarifa actualizada.
+- Las consultas no individualizan pasajeros ni guardan nombres/RUT de conductores.
 
----
+## 6. Qué NO incluye el prototipo
 
-## 7. Sobre los datos personales
+No implementa interfaz web, autenticación de producción, un sistema de facturación electrónico, GPS, telemetría ni integración contable. El proceso de papel y WhatsApp permanece como interfaz de entrada humana; el sistema sí automatiza la validación y el cálculo en base de datos. La reducción de 4 a 1 hora y de 15 a 0 días fueron **metas de E1, no resultados medidos en terreno**. La automatización se ejecuta como script equivalente a n8n; no se afirma una instancia n8n desplegada.
 
-Este repositorio es público y las evidencias vienen de planillas operativas reales, así que
-**toda la evidencia fue anonimizada antes de publicarse**, anticipándose a la Ley 21.719.
+## 7. Trazabilidad de la versión y defensa
 
-No se publica ni se almacena: nombres, RUT o domicilios de conductores y trabajadores;
-sueldos ni datos previsionales; nombres de pasajeros ni listas de personal de las empresas
-cliente. El modelo de datos excluye por diseño la identificación de personas: de un conductor
-solo guarda identificador, clase de licencia y vencimiento, y de una vuelta solo la cantidad
-de pasajeros trasladados. Ver sección G.3 del informe.
+El repositorio mantiene el historial documental y las evidencias originales de E1. Los archivos de E2 se identifican por las rutas indicadas en el informe y en `CHANGELOG.md`, con el commit de publicación registrado en `ENLACE_GITHUB.txt` cuando corresponda.
+
+La defensa corresponde al paralelo P101, **viernes 27 de noviembre de 2026, 08:15–10:50**, en formato individual autorizado por el profesor. La presentación de ocho diapositivas y el guion argumental están en `presentacion/`. El tiempo previsto de exposición es de seis minutos y cuarenta segundos, bajo el máximo de siete minutos indicado por la pauta.
